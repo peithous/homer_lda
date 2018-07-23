@@ -13,7 +13,7 @@ library(LDAvis)
 ####################
 
 # Create VCorpus (import directory of txt files with DirSource:)
-pers_il<-VCorpus(DirSource("/Users/sofia/homer_topics-1/perseus_iliad"), readerControl=list(language="el"))
+pers_il<-VCorpus(DirSource("/Users/sofia/homer_topics_R_2018/perseus_iliad"), readerControl=list(language="el"))
 
 inspect(pers_il[[1]])
 #inspect(pers_il[[2]])
