@@ -219,12 +219,10 @@ ggplot(data.frame(seqk, hm_many), aes(x=seqk, y=hm_many)) + geom_path(lwd=1.5) +
   ggtitle(expression(atop("polylas_il", atop(italic("How many distinct topics"), ""))))
 
 
-#Running the model 
-# mot_LDA1 from "mot_reduced_dtm" from Document Term Maxtrix "mot_tdm2" from VCorpus "mot_text" 
-#(transformations directly applied) with Gibbs sampling 
 
-# mot_LDA2 from "mot_tdm3" from Document Term Maxtrix "mot_tdm3" from VCorpus "mot_text" 
-#(no transformations)
+#######################
+## Running the model ## 
+#######################
 
 #fucntion: LDA(x, k, method = "VEM", control = NULL, model = NULL, ...)
 
@@ -242,28 +240,28 @@ topics1_polylas_il<-topics(polylas_il_LDA2, 2) # 2 = number of topics ranked by 
 topics1_polylas_il
 
 #Most frequent TOPIC across DOCUMENTS
-most_freq_topic<-which.max(tabulate(topics1_polylas_il))
+most_freq_topic_polylas_il<-which.max(tabulate(topics1_polylas_il))
 
 #Most frequent TERMS per TOPIC
-topic_terms<-as.data.frame(terms(polylas_il_LDA2, 10))
+topic_terms_polylas_il<-as.data.frame(terms(polylas_il_LDA2, 10))
 
-terms1<-terms(polylas_il_LDA1, 5)
-terms1
+terms1_polylas_il<-terms(polylas_il_LDA1, 5)
+terms1_polylas_il
 
-terms2<-terms(polylas_il_LDA2, 5)
-terms2
+terms2_polylas_il<-terms(polylas_il_LDA2, 5)
+terms2_polylas_il
 
 ##################################################
 ## POSTERIOR probability of topics per document ## 
 ##################################################
-theta<-as.data.frame(posterior(polylas_il_LDA2)$topics)
-theta
+theta_polylas_il<-as.data.frame(posterior(polylas_il_LDA2)$topics)
+theta_polylas_il
 
-topics2<-topics(polylas_il_LDA2, 2)
-topics2
+topics2_polylas_il<-topics(polylas_il_LDA2, 2)
+topics2_polylas_il
 
-topics3<-topics(polylas_il_LDA1, 2)
-topics3
+topics3_polylas_il<-topics(polylas_il_LDA1, 2)
+topics3_polylas_il
 
 junk0 <- as.matrix(polylas_il_dtm)
 

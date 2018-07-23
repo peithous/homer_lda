@@ -58,9 +58,9 @@ pers_il_dtm$dimnames$Terms[1:3] #Corpus dictionary: length = 19763
 
 
 
-##########################
-## Exploring the data!! ##
-##########################
+########################
+## Exploring the data ##
+########################
 
 findFreqTerms(pers_il_dtm, 50) #List of words appearing more than 50 times
 #wordFreqs_pers_il below is more informative: gives number of appearances + sorting 
@@ -171,7 +171,6 @@ str(pers_il_LDA)
 logLiks_pers_il<-pers_il_LDA@logLiks[-c(1:(burnin/keep))]
 pers_il_LDA@logLiks
 
-
 #To find the optimal value for k for our corpus, 
 #we repeat the log-lik, harmonic mean calculations over a sequence of topic models with different vales for k. 
 #This will generate numerous topic models with different numbers of topics, creating a vector to hold the k values. 
@@ -205,7 +204,6 @@ max(hm_many)
 seqk
 seqk[which.max(hm_many)]
 
-
 #Optimal LDA plot
 library(ggplot2)
 
@@ -219,12 +217,10 @@ ggplot(data.frame(seqk, hm_many), aes(x=seqk, y=hm_many)) + geom_path(lwd=1.5) +
   ggtitle(expression(atop("pers_il", atop(italic("How many distinct topics"), ""))))
 
 
-#Running the model 
-# mot_LDA1 from "mot_reduced_dtm" from Document Term Maxtrix "mot_tdm2" from VCorpus "mot_text" 
-#(transformations directly applied) with Gibbs sampling 
 
-# mot_LDA2 from "mot_tdm3" from Document Term Maxtrix "mot_tdm3" from VCorpus "mot_text" 
-#(no transformations)
+#######################
+## Running the model ## 
+#######################
 
 #fucntion: LDA(x, k, method = "VEM", control = NULL, model = NULL, ...)
 
@@ -232,7 +228,7 @@ ggplot(data.frame(seqk, hm_many), aes(x=seqk, y=hm_many)) + geom_path(lwd=1.5) +
 pers_il_LDA1 <- LDA(pers_il_dtm, k = 15, method = "Gibbs", control = list(iter=2000, seed = 0622))
 
 #LDA2 with fixed topics
-pers_il_LDA2 <- LDA(pers_il_dtm, k = 25, method = "Gibbs", control = list(iter=2000, seed = 0622))
+pers_il_LDA2 <- LDA(pers_il_dtm, k = 10, method = "Gibbs", control = list(iter=2000, seed = 0622))
 
 
 #TOPICS
@@ -242,26 +238,28 @@ topics1_pers_il<-topics(pers_il_LDA2, 2) # 2 = number of topics ranked by likeli
 topics1_pers_il
 
 #Most frequent TOPIC across DOCUMENTS
-most_freq_topic<-which.max(tabulate(topics1_pers_il))
+most_freq_topic_pers_il<-which.max(tabulate(topics1_pers_il))
 
 #Most frequent TERMS per TOPIC
-topic_terms<-as.data.frame(terms(pers_il_LDA2, 10))
+topic_terms_pers_il<-as.data.frame(terms(pers_il_LDA2, 10))
 
-terms1<-terms(pers_il_LDA1, 5)
-terms1
+terms1_pers_il<-terms(pers_il_LDA1, 5)
+terms1_pers_il
 
-terms2<-terms(pers_il_LDA2, 5)
-terms2
+terms2_pers_il<-terms(pers_il_LDA2, 5)
+terms2_pers_il
 
-#POSTERIOR probability of topics per document 
-theta<-as.data.frame(posterior(pers_il_LDA2)$topics)
-theta
+##################################################
+## POSTERIOR probability of topics per document ## 
+##################################################
+theta_pers_il<-as.data.frame(posterior(pers_il_LDA2)$topics)
+theta_pers_il
 
-topics2<-topics(pers_il_LDA2, 2)
-topics2
+topics2_pers_il<-topics(pers_il_LDA2, 2)
+topics2_pers_il
 
-topics3<-topics(pers_il_LDA1, 2)
-topics3
+topics3_pers_il<-topics(pers_il_LDA1, 2)
+topics3_pers_il
 
 junk0 <- as.matrix(pers_il_dtm)
 
