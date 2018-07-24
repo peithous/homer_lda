@@ -132,4 +132,3 @@ topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
 kazatzakis_il_LDA2_json<-topicmodels_json_ldavis(kazatzakis_il_LDA2, kazatzakis_il, kazatzakis_il_dtm)
 
 serVis(kazatzakis_il_LDA2_json)
-

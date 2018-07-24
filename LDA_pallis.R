@@ -104,7 +104,6 @@ junk0 <- as.matrix(pallis_il_dtm)
 #LDAvis
 #Convert the output of a topicmodels Latent Dirichlet Allocation to JSON
 #http://davidmeza1.github.io/2015/07/20/topic-modeling-in-R.html
-
 topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
   ## Find required quantities
   phi <- posterior(fitted)$terms %>% as.matrix

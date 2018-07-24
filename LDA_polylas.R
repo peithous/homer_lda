@@ -268,7 +268,6 @@ junk0 <- as.matrix(polylas_il_dtm)
 #LDAvis
 #Convert the output of a topicmodels Latent Dirichlet Allocation to JSON
 #http://davidmeza1.github.io/2015/07/20/topic-modeling-in-R.html
-
 topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
   ## Find required quantities
   phi <- posterior(fitted)$terms %>% as.matrix
@@ -296,9 +295,4 @@ topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
 polylas_il_LDA2_json<-topicmodels_json_ldavis(polylas_il_LDA2, polylas_il, polylas_il_dtm)
 
 serVis(polylas_il_LDA2_json)
-
-
-
-
-
 

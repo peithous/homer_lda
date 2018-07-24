@@ -294,9 +294,3 @@ topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
 pers_il_LDA2_json<-topicmodels_json_ldavis(pers_il_LDA2, pers_il, pers_il_dtm)
 
 serVis(pers_il_LDA2_json)
-
-
-
-
-
-
