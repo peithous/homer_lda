@@ -115,3 +115,4 @@ topicmodels_json_ldavis <- function(fitted, corpus, doc_term){
 butler_il_LDA2_json<-topicmodels_json_ldavis(butler_il_LDA2, butler_il, butler_il_dtm)
 
 serVis(butler_il_LDA2_json)
+
